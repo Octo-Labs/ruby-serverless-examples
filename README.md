@@ -39,5 +39,10 @@ Initial Deploy: 2m13.048s
 Followup Deploy: 1m24.996s
 Deploy only function: 0m3.823s
 
+## `serverless-docker/`
 
+This uses ECR to deploy a Docker container to Lambda.
 
+Initial Deploy: 3m13.384s
+Followup Deploy: 1m14.361s
+Deploy only function: 0m24.165s
