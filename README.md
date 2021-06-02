@@ -31,4 +31,13 @@ Initial Deploy: 1m48.047s
 Followup Deploy: 1m11.488s
 Deploy only function: 0m5.055s
 
+# `ruby-layer-docker/`
+
+Copied the `ruby-layer` project and added a `custom` section to activate Docker for `serverless-ruby-layer`.
+
+Initial Deploy: 2m13.048s
+Followup Deploy: 1m24.996s
+Deploy only function: 0m3.823s
+
+
 
