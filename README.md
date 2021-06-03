@@ -2,10 +2,19 @@
 
 The repo contains several different examples of how you can deploy Ruby to
 [AWS Lambda](https://aws.amazon.com/lambda/) via
-serverless(https://www.serverless.com/).
+[serverless](https://www.serverless.com/).
 
 Each approach has some pros and cons. Generally you'll probably want to choose the lightest approach
 possible for the workload you need to support.
+
+Once you have `serverless` configured and working you can deploy any of these examples
+by `cd`ing into the appropriate directory and doing `serverless deploy`.
+
+For instance:
+```
+cd serverless-docker
+serverless deploy
+```
 
 ## `serverless/`
 
