@@ -26,6 +26,7 @@ Cons:
 * no built-in support for gems requiring native compliation
 * no built-in local access to a production-like runtime
 
+Deployment timing:
 * Initial Deploy: 1m46.474s
 * Followup Deploy: 0m50.188s
 * Deploy only function: 0m4.188s
@@ -51,6 +52,7 @@ Cons:
 * no built-in support for gems requiring native compliation
 * no built-in local access to a production-like runtime
 
+Deployment timing:
 * Initial Deploy: 1m48.047s
 * Followup Deploy: 1m11.488s
 * Deploy only function: 0m5.055s
@@ -69,6 +71,7 @@ Cons:
 
 
 
+Deployment timing:
 * Initial Deploy: 2m13.048s
 * Followup Deploy: 1m24.996s
 * Deploy only function: 0m3.823s
@@ -87,6 +90,7 @@ Cons:
 * slower to deploy the whole project
 * slower to deploy a single function
 
+Deployment timing:
 * Initial Deploy: 3m13.384s
 * Followup Deploy: 1m14.361s
 * Deploy only function: 0m24.165s
