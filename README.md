@@ -9,7 +9,12 @@ possible for the workload you need to support.
 
 ## `serverless/`
 
-This is the simplest way to deploy ruby via serverless. The directory was generated with:
+This is the simplest way to deploy ruby via serverless. You don't get any built-in support for including
+gems, but things are very fast to deploy. Using `serverless deploy function` you can skip deploying the
+entire CloudFormation template and update the function code directly, which is pretty fast. Usually just
+a few seconds.
+
+The directory was generated with:
 
 ```
 serverless create -t aws-ruby -p serverless
@@ -20,6 +25,7 @@ And then the `httpApi` event was uncommented for the `hello` function.
 Pros:
 * lightweight
 * fastest cold boot
+* fast function deploys
 
 Cons:
 * no built-in support for gems or a `Gemfile`
@@ -34,7 +40,10 @@ Deployment timing:
 ## 'ruby-layer/`
 
 This uses `serverless-ruby-layer` to automatically bundle gems based on a `Gemfile`. Those gems
-are then included in the deployed function.
+are then packaged into a layer(https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html)
+which is used by the function. The layer is separate from the function code itself, so if you change your
+function but don't change the `Gemfile` you can use `serverless deploy function` to deploy only your function
+without needing to `bundle install` which will be pretty fast.
 
 ```
 serverless create -t aws-ruby -p serverless
@@ -46,7 +55,9 @@ added that only specifies a ruby version.
 
 Pros:
 * still fairly lightweight
+* fairly fast cold boot
 * built-in support for gems via `Gemfile`
+* fast function deploys
 
 Cons:
 * no built-in support for gems requiring native compliation
@@ -58,6 +69,11 @@ Deployment timing:
 * Deploy only function: 0m5.055s
 
 # `ruby-layer-docker/`
+
+This is very similar to the `ruby-layer` example but it uses Docker to create the bundled gems which is
+useful if you have a gem that requires native compliation for the target dployment platform (like `pg`
+or `mysql2`). The bundled gems are again deployed in a layer, and not with the function itself, which means
+that deploying a single function is still pretty fast, even if Docker does slow down the layer packing a bit.
 
 Copied the `ruby-layer` project and added a `custom` section to activate Docker for `serverless-ruby-layer`.
 
@@ -78,7 +94,10 @@ Deployment timing:
 
 ## `serverless-docker/`
 
-This uses ECR to deploy a Docker container to Lambda.
+This uses ECR to deploy a Docker container to Lambda. This is the most heavyweight option. You're building
+a full Docker image that is pushed to ECR, whcih is then deployed by Lambda. The plus side is that you can
+have local access to your deployment environment, and it's a handy way to be able to install additional
+packages or custom binaries to your runtime environment.
 
 Pros:
 * built-in support for gems via `Gemfile`
